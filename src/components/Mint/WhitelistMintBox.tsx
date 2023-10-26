@@ -109,9 +109,9 @@ const WhitelistMintBox = () => {
                 <span>Minted</span>
               </span>
             </button>
-          )}
+           )} 
         </div>
-      )}
+     )} 
     </>
   )
 }

@@ -1,40 +1,26 @@
 import { useConnectedWallet } from 'hooks/use-connected-wallet'
 import { useNavigate } from 'react-router-dom'
 import { useGetOwnedNousMetadatas } from 'repositories/rpc.repository'
-import { useNousStore } from 'store'
-import { Nft } from 'lib'
-import TypographyNormal from 'components/Typography/Normal'
-import GenericButton from 'components/Button/GenericButton'
+import { PlusIcon } from 'components/Icons/icons'
 import { useEffect, useState } from 'react'
-import Avatar from 'components/Avatar'
 
 const PageInventory = () => {
   const [selectedNftIndex, setSelectedNftIndex] = useState(0)
 
   const navigate = useNavigate()
   const { address } = useConnectedWallet()
-  const { setSelectedNous } = useNousStore()
+  const { data: owned } = useGetNftByWalletAddress({ address: address?.full, chain: 'mumbai' })
+  const { data: nfts } = useGetOwnedNousMetadatas(address.full, owned?.map(el => `${el.token_id}`) ?? [])
+  const [addressChange, setAddressChange] = useState(address)
 
-  const { data: nfts } = useGetOwnedNousMetadatas(address.full)
+  useEffect(() => {
+    setAddressChange(address)
+  }, [address])
 
   const goToMintPage = () => {
     navigate('/mint')
   }
 
-  const onHandleNftClick = (index: number) => {
-    setSelectedNftIndex(index)
-  }
-
-  const onHandleCustomizeClick = (nft: Nft) => {
-    setSelectedNous(nft)
-    navigate(`/nft`, { state: { nft } })
-  }
-
-  useEffect(() => {
-    if (nfts && nfts.length <= 0) {
-      navigate('/mint')
-    }
-  }, [navigate, nfts])
 
   return (
     <div className="flex justify-center">

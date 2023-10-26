@@ -103,22 +103,37 @@ const PublicMintBox = (prop: Props) => {
           <div className="text-lg font-semibold">Public Sale</div>
           {prop.isCompleted ? (
             <div className="text-xs">SOLD OUT</div>
-            ) : (
+          ) : (
             <div className="text-xs">Minting is LIVE from {<b className="font-bold">{showDate()}</b>}</div>
           )}
         </div>
-        {isLoaded && !isDisabled && address && (
-          <GenericButton
-            name={'Mint Nous Psyche'}
+        {isLoaded && !isDisabled && address && !prop.isCompleted && (
+          <button
+            className={`group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-gray-500 ${
+              !price || isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`}
             onClick={e => handleOnMintClicked()}
-            disabled={isLoaded && isDisabled && address}
-            className="text-2xl"
-            color="yellow"
-            textColor="text-yellow-600"
-          />
+          >
+            <span className="absolute rounded-md inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+            <span className="flex rounded-md items-center relative border border-current bg-white px-8 py-3">
+              {price && <span>Mint for {ethers.formatEther(price)}</span>}E
+            </span>
+          </button>
         )}
-        {address && !isAbleToMint && (
-          <TypographyNormal classNames="text-red-600">Restricted only to a single NFT per wallet</TypographyNormal>
+      
+        {isLoaded && (isDisabled || prop.isCompleted) && (
+          <button
+            className={`group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-gray-500 ${
+              isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`}
+            onClick={e => handleOnMintClicked()}
+          >
+            <span className="absolute rounded-md inset-0 translate-x-0.5 translate-y-0.5 bg-gray-500 transition-transform"></span>
+            <span className="flex rounded-md items-center relative border border-gray-800 bg-white px-8 py-3">
+              {'Mint Disabled'}
+            </span>
+          </button>
         )}
         {!address && <TypographyNormal classNames="text-md text-white">Connect to your wallet</TypographyNormal>}
       </div>
