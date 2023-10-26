@@ -30,7 +30,11 @@ const contractABI = [
   },
 ]
 
-const PublicMintBox = () => {
+interface Props {
+  isCompleted: boolean
+}
+const PublicMintBox = (prop: Props) => {
+  const [price, setPrice] = useState('')
   const [isDisabled, setDisabled] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isAbleToMint, setIsAbleToMint] = useState(false)
@@ -94,7 +98,15 @@ const PublicMintBox = () => {
 
   return (
     <>
-      <div className="p-4 mt-4 mb-4 text-center">
+      <div className="border-black border-2 rounded-lg p-6 flex items-center justify-between mt-4 mb-4 bg-white/40">
+        <div>
+          <div className="text-lg font-semibold">Public Sale</div>
+          {prop.isCompleted ? (
+            <div className="text-xs">SOLD OUT</div>
+            ) : (
+            <div className="text-xs">Minting is LIVE from {<b className="font-bold">{showDate()}</b>}</div>
+          )}
+        </div>
         {isLoaded && !isDisabled && address && (
           <GenericButton
             name={'Mint Nous Psyche'}

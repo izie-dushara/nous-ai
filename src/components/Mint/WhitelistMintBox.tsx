@@ -75,7 +75,9 @@ const WhitelistMintBox = () => {
         .then(() => setIsLoaded(true))
         .catch(e => console.log(e))
     }
-  }, [address])
+
+    
+  }, [isLoaded, address])
 
   return (
     <>
