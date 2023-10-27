@@ -11,12 +11,8 @@ const PageInventory = () => {
   const { address } = useConnectedWallet()
   const { data: owned } = useGetNftByWalletAddress({ address: address?.full, chain: 'mumbai' })
   const { data: nfts } = useGetOwnedNousMetadatas(address.full, owned?.map(el => `${el.token_id}`) ?? [])
-  const [addressChange, setAddressChange] = useState(address)
-
-  useEffect(() => {
-    setAddressChange(address)
-  }, [address])
-
+  
+  
   const goToMintPage = () => {
     navigate('/mint')
   }

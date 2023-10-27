@@ -74,11 +74,10 @@ const PageMint = () => {
     }
   }, [supply, max])
 
-  
   useEffect(() => {
     const getTotalSupply = async () => {
       const rpc = new RPC(window?.ethereum as any)
-    
+
       try {
         const current: number = await rpc.readContractData({
           contractABI,
@@ -86,8 +85,7 @@ const PageMint = () => {
           method: 'totalSupply',
           data: [],
         })
-   
-        
+
         setTotalSupply(Number(current))
 
         const max: number = await rpc.readContractData({
@@ -103,7 +101,7 @@ const PageMint = () => {
       }
     }
 
-    const handleAccountChange = (accounts) => {
+    const handleAccountChange = () => {
       setIsLoaded(false)
     }
 
@@ -178,10 +176,10 @@ const PageMint = () => {
             <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-4">
               <div className="text-lg font-bold mb-4">Latest Transaction</div>
               {dummies.map((dummy, index) => (
-                <div key={index} className="flex flex-col">
-                  <div className="flex justify-between items-center gap-1">
+                <div key={index} className="flex justify-between">
+                  <div className="flex justify-between items-center gap-2">
                     <img className="h-8 w-8 rounded-full" alt="default" src={dummy.image} />
-                    <p className="overflow-hidden text-ellipsis">{dummy.address}</p>
+                    <p className="overflow-hidden truncate w-40 md:w-full lg:w-24 xl:w-60">{dummy.address}</p>
                   </div>
                   <div className="flex justify-end gap-1 py-2 font-semibold text-sm">
                     <p>{dummy.eth} ETH</p>.<p>{dummy.trekki} Trekki</p>
