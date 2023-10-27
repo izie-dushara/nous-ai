@@ -74,6 +74,7 @@ const PageMint = () => {
     }
   }, [supply, max])
 
+
   useEffect(() => {
     const getTotalSupply = async () => {
       const rpc = new RPC(window?.ethereum as any)
@@ -86,7 +87,11 @@ const PageMint = () => {
           data: [],
         })
 
-        setTotalSupply(Number(current))
+        if (Number.isFinite(current)) {
+          setTotalSupply(Number(current))
+        } else {
+          setTotalSupply(0)
+        }
 
         const max: number = await rpc.readContractData({
           contractABI,
@@ -95,7 +100,11 @@ const PageMint = () => {
           data: [],
         })
 
-        setMaxSupply(Number(max))
+        if (Number.isFinite(max)) {
+          setMaxSupply(Number(max))
+        } else {
+          setMaxSupply(0)
+        }
       } catch (e) {
         console.log(e)
       }
@@ -121,6 +130,14 @@ const PageMint = () => {
       return 'https://mumbai.polygonscan.com/address/0xC1ff59a4fBA0D0a26c0A84b9A11831E1488366b4#code' as string
     } else if (import.meta.env.VITE_DEFAULT_CHAIN_ID === '1') {
       return 'https://etherscan.io/' as string
+    }
+  }
+
+  const handleNaNValue = () => {
+    if (supply === 0 || max === 0) {
+      return '0'
+    } else {
+      return `${((supply / max) * 100).toFixed(2)}`
     }
   }
 
@@ -150,7 +167,7 @@ const PageMint = () => {
             <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-4">
               <div className="text-lg font-bold mb-4">Progress</div>
               <div className="flex justify-between text-sm">
-                <span>{isCompleted ? 'SOLD OUT' : `${((supply / max) * 100).toFixed(2)}% minted`}</span>
+                <span>{isCompleted ? 'SOLD OUT' : `${handleNaNValue()}% minted`}</span>
                 <span className="font-semibold">
                   {supply}/{max}
                 </span>
