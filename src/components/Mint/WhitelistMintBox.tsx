@@ -85,7 +85,7 @@ const WhitelistMintBox = () => {
             <div className="text-lg font-semibold">Full Discount Eligibility</div>
             <div className="text-xs">You qualify for 100% discount</div>
           </div>
-          {isWhitelistClaimed && (
+          {!isWhitelistClaimed && (
             <button
               className={`group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-gray-500 ${
                 !isLoaded ? 'cursor-not-allowed' : 'cursor-pointer'
