@@ -1,5 +1,4 @@
 import { ExclamationIcon } from 'components/Icons/icons'
-import TypographyNormal from 'components/Typography/Normal'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import botFaq from '/public/img/botfaq.svg'
@@ -52,21 +51,19 @@ const PageIndex = () => {
         </section>
         {/* FAQ Section */}
         <section className=" flex flex-col items-center justify-center">
-          <p className="flex gap-2 justify-center p-1 pt-10 pb-6 md:w-3/4 font-medium">
+          <p className="flex gap-2 justify-center p-1 w-3/4 font-medium">
             <ExclamationIcon />
-            <TypographyNormal>Don't know what to ask? Try asking this:</TypographyNormal>
+            Don't know what to ask? Try asking this:
           </p>
 
-          <div className={`grid grid-cols-2 gap-2 sm:flex sm:gap-2 sm:flex-wrap md:px-7 md:p-3 justify-center `}>
+          <div className={`grid grid-cols-2  sm:flex sm:gap-2 sm:flex-wrap px-7 md:p-3 justify-center `}>
             {quickLinks.map((link, index) => (
               <button
                 key={index}
                 onClick={() => {
                   goToSearch(link)
                 }}
-                className={`bg-black text-xs md:text-sm hover:bg-black/50 hover:text-white text-gray-200 rounded-md p-2 ${
-                  quickLinks.length % 2 !== 0 && ' last:col-span-2'
-                }`}
+                className={`text-sm hover:bg-[#181818] hover:text-white text-gray-400 rounded-md p-2 ${quickLinks.length % 2 !== 0 && " last:col-span-2"}`}
               >
                 {link}
               </button>

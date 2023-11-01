@@ -3,6 +3,7 @@ import TimelineMint from 'components/Mint/TimelineMint'
 import TransactionMint from 'components/Mint/TransactionMint'
 import WhitelistMintBox from 'components/Mint/WhitelistMintBox'
 import TimelineMint from 'components/Mint/TimelineMint'
+import TransactionMint from 'components/Mint/TransactionMint'
 import { useEffect, useState } from 'react'
 import RPC from 'utils/ethers'
 
@@ -28,43 +29,7 @@ const PageMint = () => {
   const [max, setMaxSupply] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCompleted, setIsCompleted] = useState(true)
-  const [dummies] = useState([
-    {
-      image:
-        'https://images.pexels.com/photos/18734695/pexels-photo-18734695/free-photo-of-cup-of-coffee-on-bed.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      address: import.meta.env.VITE_NOUS_AI_NFT,
-      eth: 0.156,
-      trekki: 7,
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/18734695/pexels-photo-18734695/free-photo-of-cup-of-coffee-on-bed.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      address: import.meta.env.VITE_NOUS_AI_NFT,
-      eth: 0.09,
-      trekki: 8,
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/18734695/pexels-photo-18734695/free-photo-of-cup-of-coffee-on-bed.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      address: import.meta.env.VITE_NOUS_AI_NFT,
-      eth: 0.04,
-      trekki: 6,
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/18734695/pexels-photo-18734695/free-photo-of-cup-of-coffee-on-bed.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      address: import.meta.env.VITE_NOUS_AI_NFT,
-      eth: 0.2,
-      trekki: 2,
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/18734695/pexels-photo-18734695/free-photo-of-cup-of-coffee-on-bed.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      address: import.meta.env.VITE_NOUS_AI_NFT,
-      eth: 0.1,
-      trekki: 5,
-    },
-  ])
+  
 
   useEffect(() => {
     if (Number(((supply / max) * 100).toFixed(2)) === 100.0) {
@@ -143,7 +108,7 @@ const PageMint = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+      <div className=" p-1 md:px-2 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
         <div className=" rounded-lg lg:col-span-2">
           <div className="rounded-lg border border-gray-700 bg-orange-300 text-black p-4">
             <div className="text-lg font-bold">Mint your NOUS Bot</div>
@@ -192,22 +157,7 @@ const PageMint = () => {
               <div className="mt-3 text-xs">Minting remains open while supplies last.</div>
             </div>
           </div>
-          <div className=" rounded-lg">
-            <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-4">
-              <div className="text-lg font-bold mb-4">Latest Transaction</div>
-              {dummies.map((dummy, index) => (
-                <div key={index} className="flex justify-between">
-                  <div className="flex justify-between items-center gap-2">
-                    <img className="h-8 w-8 rounded-full" alt="default" src={dummy.image} />
-                    <p className="overflow-hidden truncate w-40 md:w-full lg:w-24 xl:w-60">{dummy.address}</p>
-                  </div>
-                  <div className="flex justify-end gap-1 py-2 font-semibold text-sm">
-                    <p>{dummy.eth} ETH</p>.<p>{dummy.trekki} Trekki</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TransactionMint />
           <TimelineMint />
           
         </div>

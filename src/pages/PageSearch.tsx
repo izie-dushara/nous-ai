@@ -166,42 +166,18 @@ const PageSearch = () => {
   }, [faqs])
 
   return (
-    <>
-      <div className="flex mx-auto w-4/5 md:w-3/4 justify-center bg-green-800/80 backdrop-blur pb-40">
-        <main className="w-full">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <div className="">
-                <h1 className="text-md bg-blue-600 px-4 py-2 font-reading">
-                  <TypographyNormal>{faq.question}</TypographyNormal>
-                </h1>
-                <div className="flex justify-start items-start mt-2 p-4">
-                  <img src={BotImg} className="h-18 w-18 p-1 ring-2 ring-blue-600 rounded-full" />
-                  <DisplayAnswer answers={faq.answers} />
-                </div>
-              </div>
-              <hr className="h-px bg-gray-400 border-0" />
-            </div>
-          ))}
-
-          <section className="p-4 bg-white/10 backdrop-blur">
-            <div className="">
-              <h3 className="font-semibold text-xl items-center flex gap-2 rounded-md text-yellow-400">
-                <StackIcon />
-                <TypographyNormal>Quick Links</TypographyNormal>
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-                {quickLinks.map((link, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      chatQuestion(link)
-                    }}
-                    className="text-sm p-4 bg-yellow-600/40 hover:cursor-pointer hover:bg-yellow-600/90 ring-1 ring-yellow-600"
-                  >
-                    <TypographyNormal>{link}</TypographyNormal>
-                  </div>
-                ))}
+    <div className="flex mx-auto w-4/5 md:w-3/4 justify-center">
+      <main className="w-full h-screen">
+        {faqs.map((faq, index) => (
+          <div key={index}>
+            <div>
+              <h1 className="text-3xl">{faq.question}</h1>
+              <div className="mt-4">
+                <h3 className="font-semibold text-xl items-center flex gap-2 rounded-md py-3">
+                  <AnswerIcon />
+                  Answers
+                </h3>
+                <DisplayAnswer answers={faq.answers} />
               </div>
             </div>
           </section>
@@ -226,14 +202,16 @@ const PageSearch = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </section>
-          )}
-        </main>
-      </div>
-      <div className="fixed bottom-0 left-0 w-full ">
-        <div className="py-6">
-          <ChatSubmit onSendChat={msg => chatQuestion(msg)} disable={disableChat} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Input Section */}
+        <div className="fixed bottom-0 left-0 w-full ">
+          <div className="relative py-6">
+            <ChatSubmit onSendChat={msg => chatQuestion(msg)} disable={disableChat} />
+          </div>
         </div>
       </div>
     </>
