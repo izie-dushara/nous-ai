@@ -29,7 +29,8 @@ const PageMint = () => {
   const [max, setMaxSupply] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCompleted, setIsCompleted] = useState(true)
-  
+
+  const progressValue = (supply / max) * 100
 
   useEffect(() => {
     if (Number(((supply / max) * 100).toFixed(2)) === 100.0) {
@@ -38,7 +39,6 @@ const PageMint = () => {
       setIsCompleted(false)
     }
   }, [supply, max])
-
 
   useEffect(() => {
     const getTotalSupply = async () => {
@@ -102,7 +102,7 @@ const PageMint = () => {
     if (supply === 0 || max === 0) {
       return '0'
     } else {
-      return `${((supply / max) * 100).toFixed(2)}`
+      return `${progressValue.toFixed(2)}`
     }
   }
 
@@ -126,9 +126,6 @@ const PageMint = () => {
             <PublicMintBox isCompleted={isCompleted} />
             <WhitelistMintBox />
           </div>
-
-         
-          
         </div>
         <div className="flex flex-col gap-3">
           <div className=" rounded-lg">
@@ -147,8 +144,10 @@ const PageMint = () => {
 
                 <span aria-labelledby="ProgressLabel" className="block rounded-full bg-yellow-100">
                   <span
-                    className="block h-4 pt-1 rounded-lg bg-[repeating-linear-gradient(45deg,_var(--tw-gradient-from)_0,_var(--tw-gradient-from)_20px,_var(--tw-gradient-to)_20px,_var(--tw-gradient-to)_40px)] from-orange-400 to-orange-500"
-                    style={{ width: `${(supply / max) * 100}%` }}
+                    className={`block h-4 pt-1 ${
+                      progressValue <= 2 ? 'rounded-s-lg' : 'rounded-lg'
+                    }  bg-[repeating-linear-gradient(45deg,_var(--tw-gradient-from)_0,_var(--tw-gradient-from)_20px,_var(--tw-gradient-to)_20px,_var(--tw-gradient-to)_40px)] from-orange-400 to-orange-500`}
+                    style={{ width: `${progressValue < 1 ? '0' : progressValue}%` }}
                   >
                     <span className="font-bold text-white"> </span>
                   </span>
@@ -159,7 +158,6 @@ const PageMint = () => {
           </div>
           <TransactionMint />
           <TimelineMint />
-          
         </div>
         {/* <div className="text-sm mt-4 text-center">
           Nous Psyche NFT Contract:{' '}
