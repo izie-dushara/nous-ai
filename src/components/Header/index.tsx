@@ -59,33 +59,30 @@ export default function Header() {
           <div className="flex text-white h-full">
             <Link
               to="/mint"
-              className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
-                location.pathname === '/mint' ? 'bg-blue-600/80' : ''
-              }`}
+              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              title='Mint'
             >
-              <MintIcon /> Mint
+              <MintIcon /> <span className='hidden sm:block'>Mint</span>
             </Link>
             {address && (
               <>
                 <Link
                   to="/inventory"
-                  className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
-                    location.pathname === '/inventory' ? 'bg-blue-600/80' : ''
-                  }`}
+                  className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+                  title='Inventory'
                 >
-                  <InventoryIcon /> Inventory
+                  <InventoryIcon /> <span className='hidden sm:block'>Inventory</span> 
                 </Link>
               </>
             )}
 
             <Link
               to="/explorer"
-              className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
-                location.pathname === '/explorer' ? 'bg-blue-600/80' : ''
-              }`}
+              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              title='Explorer'
             >
-              <CommunityIcon />
-              Explorer
+              <CommunityIcon /><span className='hidden sm:block'>Explorer</span>
+              
             </Link>
           </div>
           <ConnectButton

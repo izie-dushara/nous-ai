@@ -119,7 +119,7 @@ const PublicMintBox = (prop: Props) => {
                 <span className="absolute rounded-md inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
                 <span className="flex rounded-md items-center relative border border-current bg-white px-8 py-3">
-                  {price && <span>Mint for {ethers.formatEther(price)}</span>}E
+                  {price && <span>Mint for {ethers.formatEther(price)}E</span>}
                 </span>
               </button>
             )}

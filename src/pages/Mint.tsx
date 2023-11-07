@@ -2,8 +2,6 @@ import PublicMintBox from 'components/Mint/PublicMintBox'
 import TimelineMint from 'components/Mint/TimelineMint'
 import TransactionMint from 'components/Mint/TransactionMint'
 import WhitelistMintBox from 'components/Mint/WhitelistMintBox'
-import TimelineMint from 'components/Mint/TimelineMint'
-import TransactionMint from 'components/Mint/TransactionMint'
 import { useEffect, useState } from 'react'
 import RPC from 'utils/ethers'
 
