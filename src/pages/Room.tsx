@@ -104,28 +104,20 @@ const PageRoom = () => {
     }
   }, [bgColor])
 
+  const textColor = localStorage.getItem('textColor')
+  const imageURL = localStorage.getItem('uploadedImage')
+  
   return (
-    <>
-      <div className="min-h-screen z-0 pb-72">
-        <div className="relative h-screen z-10 pb-[230px]">
-          <div className="w-full mt-4">
-            <Link to="/inventory">Back to NFT</Link>
-          </div>
-          <div className="flex flex-col w-full h-screen">
-            <div className="flex-1 p-2">
-              {chats.map((chat, index) => {
-                return (
-                  <ChatBubble
-                    name={chat.name}
-                    key={index}
-                    img={chat.avatar}
-                    text={chat.text}
-                    bgColor={chat.bgColor as string}
-                    className=""
-                  />
-                )
-              })}
-              <div ref={bottomRef}></div>
+    <div className="flex justify-center w-full h-screen" style={{ backgroundImage: `url(${imageURL})`, color: `${textColor}`, backgroundSize: "contain"}}>
+      <div className="flex flex-col w-full h-screen">
+        <div>
+          {/*   <header className="bg-white/10">
+            <div className="px-4 py-2">
+              <div className="">
+                <div className="flex justify-between">
+                  <div className="relative flex items-center"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

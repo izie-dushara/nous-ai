@@ -29,8 +29,7 @@ import PageBot from 'pages/Bot2'
 import PageExplorer from 'pages/Explorer'
 import PageContainer from 'pages/Container'
 import PageBot2 from 'pages/Bot2'
-import PagePerks from 'pages/Perks'
-import PageQuest from 'pages/Quest'
+import EditRoomPage from 'pages/EditRoomPage'
 
 const App = () => {
   return (
@@ -53,6 +52,7 @@ const App = () => {
           </Route>
           <Route element={<PublicLayout children={undefined} />}>
             <Route path="/room/:key" element={<PageRoom />} />
+            <Route path='/edit/:key' element={<EditRoomPage/>} />
           </Route>
         </Routes>
       </LitProtocolProvider>
