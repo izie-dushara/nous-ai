@@ -8,12 +8,12 @@ import { useGetSingleNousMetadata } from 'repositories/rpc.repository'
 import { useParams } from 'react-router-dom'
 import { v4 } from 'uuid'
 import EditPanel from 'components/EditRoomPage/EditPanel'
+import { useEdit } from 'components/EditRoomPage/useEdit'
 
 const EditRoomPage = () => {
   const { key } = useParams()
-  const [displayImage, setDisplayImage] = useState('')
-  const [presentColor, setPresentColor] = useState('')
-
+  const { displayImage, presentColor} = useEdit()
+  
   useEffect(() => {}, [])
   const [chats, setChats] = useState<Chat[]>([])
   const [disableChat, setDisableChat] = useState(false)
@@ -110,12 +110,9 @@ const EditRoomPage = () => {
             </div>
           </header>
         </div>
-        <EditPanel
-          displayImage={displayImage}
-          setDisplayImage={setDisplayImage}
-          presentColor={presentColor}
-          setPresentColor={setPresentColor}
-        />
+
+        <EditPanel />
+
         <div className="flex-1 overflow-y-auto p-2">
           <div className="flex p-2 my-2 mx-1 md:mx-16 lg:mx-40">
             <div className='h-8 w-8 md:h-10 md:w-10 px-3 rounded-md border-[1px] border-[#333335] bg-slate-700'></div>
