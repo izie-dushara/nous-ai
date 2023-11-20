@@ -8,6 +8,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { v4 } from 'uuid'
 import useCheckAccess from 'hooks/useCheckRoomAccess'
 import { useConnectedWallet } from 'hooks/use-connected-wallet'
+import { useEdit } from 'components/EditRoomPage/useEdit'
 
 const PageRoom = () => {
   const { key } = useParams()
@@ -104,11 +105,13 @@ const PageRoom = () => {
     }
   }, [bgColor])
 
-  const textColor = localStorage.getItem('textColor')
-  const imageURL = localStorage.getItem('uploadedImage')
-  
+  const {displayImage, presentColor} = useEdit()
+
   return (
-    <div className="flex justify-center w-full h-screen" style={{ backgroundImage: `url(${imageURL})`, color: `${textColor}`, backgroundSize: "contain"}}>
+    <div
+      className="flex justify-center w-full h-screen"
+      style={{ backgroundImage: `url(${displayImage})`, color: `${presentColor}`, backgroundSize: 'contain' }}
+    >
       <div className="flex flex-col w-full h-screen">
         <div>
           {/*   <header className="bg-white/10">
@@ -127,7 +130,7 @@ const PageRoom = () => {
           <ChatSubmit onSendChat={msg => onSendChat(msg)} disable={disableChat} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
