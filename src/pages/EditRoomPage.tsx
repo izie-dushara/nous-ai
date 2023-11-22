@@ -95,9 +95,9 @@ const EditRoomPage = () => {
   return (
     <div
       className="flex justify-center w-full h-screen"
-      style={{ backgroundImage: `url(${displayImage})`, color: `${presentColor}`, backgroundSize: "contain" }}
+      style={{ backgroundImage: `url(${displayImage})`, color: `${presentColor}`, backgroundSize: 'cover', position: "fixed"  }}
     >
-      <div className="flex flex-col w-full h-screen bg-contain">
+      <div className="flex flex-col w-full h-screen">
         <div>
           <header>
             <div className="relative flex justify-center pb-6 md:pb-0">

@@ -106,24 +106,9 @@ const PageMint = () => {
 
   return (
     <>
-      <div className=" p-1 md:px-2 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        <div className=" rounded-lg lg:col-span-2">
-          <div className="rounded-lg border border-gray-700 bg-orange-300 text-black p-4">
-            <div className="text-lg font-bold">Mint your NOUS Bot</div>
-            <div className="text-sm">
-              Contract:{' '}
-              <a
-                href={handleLink()}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="text-orange-500 hover:text-orange-100 underline"
-              >
-                {import.meta.env.VITE_NOUS_AI_NFT}
-              </a>
-            </div>
-            <PublicMintBox isCompleted={isCompleted} />
-            <WhitelistMintBox />
-          </div>
+      <div className="w-2/5 pl-2">
+        <div className="p-4">
+          <PublicMintBox />
         </div>
         <div className="flex flex-col gap-3">
           <div className=" rounded-lg">

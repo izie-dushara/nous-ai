@@ -60,18 +60,18 @@ export default function Header() {
             <Link
               to="/mint"
               className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
-              title='Mint'
+              title="Mint"
             >
-              <MintIcon /> <span className='hidden sm:block'>Mint</span>
+              <MintIcon /> <span className="hidden sm:block">Mint</span>
             </Link>
             {address && (
               <>
                 <Link
                   to="/inventory"
                   className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
-                  title='Inventory'
+                  title="Inventory"
                 >
-                  <InventoryIcon /> <span className='hidden sm:block'>Inventory</span> 
+                  <InventoryIcon /> <span className="hidden sm:block">Inventory</span>
                 </Link>
               </>
             )}
@@ -79,10 +79,18 @@ export default function Header() {
             <Link
               to="/explorer"
               className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
-              title='Explorer'
+              title="Explorer"
             >
-              <CommunityIcon /><span className='hidden sm:block'>Explorer</span>
-              
+              <CommunityIcon />
+              <span className="hidden sm:block">Explorer</span>
+            </Link>
+            <Link
+              to="/quests"
+              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              title="Quests"
+            >
+              <QuestIcon />
+              <span className="hidden sm:block">Quests</span>
             </Link>
           </div>
           <ConnectButton

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Web3Wrapper>
-      <div className="container mx-auto text-white">
+      <div className=" text-white">
         <Outlet />
       </div>
     </Web3Wrapper>

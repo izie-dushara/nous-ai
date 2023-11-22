@@ -35,10 +35,9 @@ const PageIndex = () => {
           </TypographyNormal>
         </h3>
       </section>
-      <div className="w-full md:h-[600px]">
+      <div className="w-full h-full">
         {/* Search Section */}
-        <section className="flex flex-col justify-center items-center h-1/4">
-          <img src={botFaq} className="w-16 h-16 md:w-28 md:h-28" />
+        <section className="flex flex-col justify-center items-center h-1/4 py-4">
           <div className="w-full flex justify-center items-center">
             <input
               type="text"
@@ -51,12 +50,12 @@ const PageIndex = () => {
         </section>
         {/* FAQ Section */}
         <section className=" flex flex-col items-center justify-center">
-          <p className="flex gap-2 justify-center p-1 w-3/4 font-medium">
+          <p className="flex gap-2 justify-center px-1 py-5 w-3/4 font-medium">
             <ExclamationIcon />
             Don't know what to ask? Try asking this:
           </p>
 
-          <div className={`grid grid-cols-2  sm:flex sm:gap-2 sm:flex-wrap px-7 md:p-3 justify-center `}>
+          <div className={`grid grid-cols-2 gap-1 sm:flex sm:gap-2 sm:flex-wrap px-7 md:p-3 justify-center `}>
             {quickLinks.map((link, index) => (
               <button
                 key={index}
