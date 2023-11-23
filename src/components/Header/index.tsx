@@ -9,6 +9,7 @@ import { CURRENT_CHAIN } from 'store/slices/wallet.slice'
 import logo from '/img/logo.png'
 import { CommunityIcon, InventoryIcon, MintIcon, PerksIcon, QuestIcon } from 'components/Icons/icons'
 import { useConnectedWallet } from 'hooks/use-connected-wallet'
+import SmallScreenMenu from './SmallScreenMenu'
 
 export default function Header() {
   const { setCurrentWalletState, setWalletState, current } = useBoundStore()
@@ -48,8 +49,8 @@ export default function Header() {
 
   return (
     <Disclosure as="nav" className="bg-transparent">
-      <div className="mx-auto max-w-[3840px]">
-        <div className="relative flex h-16 items-center justify-between px-3">
+      <div className="mx-auto max-w-[3840px] py-1">
+        <div className="relative flex h-16 items-center justify-between pl-3">
           <div className="flex flex-shrink-0 items-center">
             <Link to="/">
               <img className="block h-10 w-auto lg:hidden" src={logo} alt="Nous Psyche" />
@@ -59,47 +60,52 @@ export default function Header() {
           <div className="flex text-white h-full">
             <Link
               to="/mint"
-              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              className="sm:flex hidden items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
               title="Mint"
             >
-              <MintIcon /> <span className="hidden sm:block">Mint</span>
+              <MintIcon /> <span>Mint</span>
             </Link>
             {address && (
               <>
                 <Link
                   to="/inventory"
-                  className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+                  className="sm:flex hidden items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
                   title="Inventory"
                 >
-                  <InventoryIcon /> <span className="hidden sm:block">Inventory</span>
+                  <InventoryIcon /> <span>Inventory</span>
                 </Link>
               </>
             )}
 
             <Link
               to="/explorer"
-              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              className="sm:flex hidden items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
               title="Explorer"
             >
               <CommunityIcon />
-              <span className="hidden sm:block">Explorer</span>
+              <span>Explorer</span>
             </Link>
             <Link
               to="/quests"
-              className="flex items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
+              className="sm:flex hidden items-center gap-2 px-4 h-10 py-2 hover:bg-orange-200 hover:text-orange-800 rounded-lg"
               title="Quests"
             >
               <QuestIcon />
-              <span className="hidden sm:block">Quests</span>
+              <span>Quests</span>
             </Link>
           </div>
-          <ConnectButton
-            chainStatus={'none'}
-            accountStatus={{
-              smallScreen: 'avatar',
-              largeScreen: 'avatar',
-            }}
-          />
+          <div className="hidden sm:block pr-3">
+            <ConnectButton
+              chainStatus={'none'}
+              accountStatus={{
+                smallScreen: 'avatar',
+                largeScreen: 'avatar',
+              }}
+            />
+          </div>
+          <div className="block sm:hidden">
+            <SmallScreenMenu />
+          </div>
         </div>
       </div>
     </Disclosure>
