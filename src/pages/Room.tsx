@@ -21,7 +21,7 @@ const PageRoom = () => {
   const bottomRef = useRef<HTMLDivElement | null>(null)
   const [name, setName] = useState('')
   const [bgColor, setBgColor] = useState('')
-
+  const {bgImage, colors} = useEdit()
   const { data: nft } = useGetSingleNousMetadata(key as string)
 
   const { data: metadata } = useGetLineageNftToken(key as string)
@@ -105,22 +105,28 @@ const PageRoom = () => {
     }
   }, [bgColor])
 
-  const {displayImage, presentColor} = useEdit()
-
   return (
-    <div
-      className="flex justify-center w-full h-screen"
-      style={{ backgroundImage: `url(${displayImage})`, color: `${presentColor}`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat'  }}
-    >
-      <div className="flex flex-col w-full h-screen">
-        <div>
-          {/*   <header className="bg-white/10">
-            <div className="px-4 py-2">
-              <div className="">
-                <div className="flex justify-between">
-                  <div className="relative flex items-center"></div>
-                </div>
-              </div>
+    <>
+      <div className="min-h-screen z-0 pb-72 bg-no-repeat bg-cover h-screen w-full" style={{ backgroundImage: `url(${bgImage})`, overflow: "hidden", backgroundPosition: "center", color: `${colors.chatText}` }}>
+        <div className="relative h-screen z-10 pb-[230px]">
+          <div className="w-full mt-4 pl-2">
+            <Link to="/inventory">{`< < `}Back to NFT</Link>
+          </div>
+          <div className="flex flex-col w-full h-screen">
+            <div className="flex-1 p-2">
+              {chats.map((chat, index) => {
+                return (
+                  <ChatBubble
+                    name={chat.name}
+                    key={index}
+                    img={chat.avatar}
+                    text={chat.text}
+                    bgColor={chat.bgColor as string}
+                    className=""
+                  />
+                )
+              })}
+              <div ref={bottomRef}></div>
             </div>
           </div>
         </div>
@@ -130,7 +136,8 @@ const PageRoom = () => {
           <ChatSubmit onSendChat={msg => onSendChat(msg)} disable={disableChat} />
         </div>
       </div>
-    </div>
+    </>
+
   )
 }
 

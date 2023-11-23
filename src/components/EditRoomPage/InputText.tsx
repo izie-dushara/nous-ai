@@ -1,21 +1,21 @@
 import { useEdit } from './useEdit'
 import { CompactPicker } from 'react-color'
 
-const BoxTextColor = () => {
-  const { boxTextColor, setBoxTextColor } = useEdit()
+const InputText = () => {
+  const { colors } = useEdit()
 
   return (
     <div className="text-center text-white">
       <p className="font-bold">Box Text Color</p>
       <CompactPicker
-        color={boxTextColor}
+        color={colors.inputText}
         onChangeComplete={color => {
-          setBoxTextColor(color.hex)
-          localStorage.setItem('boxText', color.hex)
+          colors.setInputText(color.hex)
+          localStorage.setItem('inpTxt', color.hex)
         }}
       />
     </div>
   )
 }
 
-export default BoxTextColor
+export default InputText

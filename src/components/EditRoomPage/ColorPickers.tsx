@@ -1,55 +1,50 @@
 import { useEdit } from './useEdit'
 import { useEffect } from 'react'
-import TextColor from './TextColor'
-import BoxColor from './BoxColor'
-import SubmitColor from './SubmitColor'
-import BoxTextColor from './BoxTextColor'
+import BoxColor from './InputBox'
+import SubmitColor from './SubmitBanner'
+import BoxTextColor from './InputText'
+import ChatText from './ChatText'
 
 const ColorPickers = () => {
   const {
-    setPresentColor,
-    setBoxColor,
-    setSubmitColor,
-    setDisplayImage,
-    isShowBoxColor,
-    isShowSubmitColor,
-    isShowTextColor,
-    setBoxTextColor,
-    isShowBoxTextColor
+    setBgImage,
+    colors: {setChatText, setInputBox, setInputText, setSubmitBanner},
+    isShow
   } = useEdit()
 
+
   useEffect(() => {
-    const storedImage = localStorage.getItem('uploadedImage')
-    const storedTextColor = localStorage.getItem('textColor')
-    const storedBoxColor = localStorage.getItem('boxColor')
-    const storedSubmitColor = localStorage.getItem('submitColor')
-    const storedBoxTextColor = localStorage.getItem('boxText')
+    const storedImage = localStorage.getItem('bgImage')
+    const storedChatText = localStorage.getItem('chTxt')
+    const storedInputText = localStorage.getItem('inpTxt')
+    const storedSubmitBanner = localStorage.getItem('sBanner')
+    const storedInputBox = localStorage.getItem('inpBox')
 
     if (storedImage) {
-      setDisplayImage(storedImage)
+      setBgImage(storedImage)
     }
-    if (storedTextColor) {
-      setPresentColor(storedTextColor)
+    if (storedChatText) {
+      setChatText(storedChatText)
     }
-    if (storedBoxColor) {
-      setBoxColor(storedBoxColor)
+    if (storedInputText) {
+      setInputText(storedInputText)
     }
-    if (storedSubmitColor) {
-      setSubmitColor(storedSubmitColor)
+    if (storedSubmitBanner) {
+      setSubmitBanner(storedSubmitBanner)
     }
-    if (storedBoxTextColor) {
-      setBoxTextColor(storedBoxTextColor)
+    if (storedInputBox) {
+      setInputBox(storedInputBox)
     }
-  }, [setDisplayImage, setPresentColor, setBoxColor, setSubmitColor, setBoxTextColor])
+  }, [setBgImage, setChatText, setInputBox, setInputText, setSubmitBanner])
   return (
     <div>
-      {isShowTextColor && <TextColor />}
+      {isShow.chatText && <ChatText />}
 
-      {isShowBoxColor && <BoxColor />}
+      {isShow.inputBox && <BoxColor />}
 
-      {isShowSubmitColor && <SubmitColor />}
+      {isShow.submitBanner && <SubmitColor />}
 
-      {isShowBoxTextColor && <BoxTextColor />}
+      {isShow.inputText && <BoxTextColor />}
 
     </div>
   )

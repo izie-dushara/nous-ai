@@ -2,16 +2,16 @@ import { CompactPicker } from "react-color"
 import { useEdit } from "./useEdit"
 
 
-const SubmitColor = () => {
-  const {submitColor, setSubmitColor } = useEdit()
+const SubmitBanner = () => {
+  const {colors } = useEdit()
   
   return (
     <div className="text-center text-white">
       <p className="font-bold">Submit Color</p>
       <CompactPicker
-        color={submitColor}
+        color={colors.submitBanner}
         onChangeComplete={color => {
-          setSubmitColor(color.hex)
+          colors.setSubmitBanner(color.hex)
           localStorage.setItem('submitColor', color.hex)
         }}
       />
@@ -19,4 +19,4 @@ const SubmitColor = () => {
   )
 }
 
-export default SubmitColor
+export default SubmitBanner

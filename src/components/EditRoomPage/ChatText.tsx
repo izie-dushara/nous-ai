@@ -1,21 +1,21 @@
 import { CompactPicker } from 'react-color'
 import { useEdit } from './useEdit'
 
-const TextColor = () => {
-  const { presentColor, setPresentColor } = useEdit()
+const ChatText = () => {
+  const { colors } = useEdit()
 
   return (
     <div className="text-center text-white">
       <p className="font-bold">Text Color</p>
       <CompactPicker
-        color={presentColor}
+        color={colors.chatText}
         onChangeComplete={color => {
-          setPresentColor(color.hex)
-          localStorage.setItem('textColor', color.hex)
+          colors.setChatText(color.hex)
+          localStorage.setItem('chTxt', color.hex)
         }}
       />
     </div>
   )
 }
 
-export default TextColor
+export default ChatText
