@@ -75,8 +75,6 @@ const WhitelistMintBox = () => {
     }
   }, [address])
 
-
-
   return (
     <>
       {isWhitelisted === true && (
