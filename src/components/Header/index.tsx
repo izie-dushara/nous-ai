@@ -9,9 +9,11 @@ import { CURRENT_CHAIN } from 'store/slices/wallet.slice'
 import logo from '/img/logo.png'
 import { CommunityIcon, InventoryIcon, MintIcon, PerksIcon, QuestIcon } from 'components/Icons/icons'
 import { useConnectedWallet } from 'hooks/use-connected-wallet'
+import SmallScreenModal from './SmallScreenModal'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 
 export default function Header() {
-  const { setCurrentWalletState, setWalletState, current } = useBoundStore()
+  const { setCurrentWalletState, setWalletState, current, setModalState } = useBoundStore()
   const { setSelectedNous, selectedNous } = useNousStore()
   const { address, isConnected } = useAccount()
   const wallet = useConnectedWallet()
@@ -46,6 +48,11 @@ export default function Header() {
     wallet.address,
   ])
 
+  const openModal = () => {
+    setModalState({smallMenu: {isOpen: true}})
+    
+  }
+
   return (
     <Disclosure as="nav" className="bg-transparent">
       <div className="mx-auto max-w-[3840px]">
@@ -59,7 +66,7 @@ export default function Header() {
           <div className="flex text-white h-full">
             <Link
               to="/mint"
-              className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
+              className={`hidden sm:flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
                 location.pathname === '/mint' ? 'bg-blue-600/80' : ''
               }`}
             >
@@ -69,7 +76,7 @@ export default function Header() {
               <>
                 <Link
                   to="/inventory"
-                  className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
+                  className={`hidden sm:flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
                     location.pathname === '/inventory' ? 'bg-blue-600/80' : ''
                   }`}
                 >
@@ -80,7 +87,7 @@ export default function Header() {
 
             <Link
               to="/explorer"
-              className={`flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
+              className={`hidden sm:flex items-center gap-2 px-4 py-2 h-full border-r border-l hover:bg-blue-600 backdrop-blur bg-black/60 ${
                 location.pathname === '/explorer' ? 'bg-blue-600/80' : ''
               }`}
             >
@@ -88,13 +95,21 @@ export default function Header() {
               Explorer
             </Link>
           </div>
-          <ConnectButton
-            chainStatus={'none'}
-            accountStatus={{
-              smallScreen: 'avatar',
-              largeScreen: 'avatar',
-            }}
-          />
+          <div className="block">
+            <ConnectButton
+              chainStatus={'none'}
+              accountStatus={{
+                smallScreen: 'avatar',
+                largeScreen: 'avatar',
+              }}
+            />
+          </div>
+          <div className="block sm:hidden h-8 w-8 text-white" onClick={openModal}>
+            <Bars3Icon />
+          </div>
+        </div>
+        <div>
+              <SmallScreenModal />
         </div>
       </div>
     </Disclosure>
