@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
-
 import { Link, useLocation } from 'react-router-dom'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useNetwork } from 'wagmi'
@@ -9,8 +8,9 @@ import { CURRENT_CHAIN } from 'store/slices/wallet.slice'
 import logo from '/img/logo.png'
 import { CommunityIcon, InventoryIcon, MintIcon, PerksIcon, QuestIcon } from 'components/Icons/icons'
 import { useConnectedWallet } from 'hooks/use-connected-wallet'
-import SmallScreenModal from './SmallScreenModal'
+import SmallScreenModal from '../Modal/SmallScreenModal'
 import { Bars3Icon } from '@heroicons/react/24/outline'
+import SocialMedias from './SocialMedias'
 
 export default function Header() {
   const { setCurrentWalletState, setWalletState, current, setModalState } = useBoundStore()
@@ -49,8 +49,7 @@ export default function Header() {
   ])
 
   const openModal = () => {
-    setModalState({smallMenu: {isOpen: true}})
-    
+    setModalState({ smallMenu: { isOpen: true } })
   }
 
   return (
@@ -59,7 +58,7 @@ export default function Header() {
         <div className="relative flex h-16 items-center justify-between px-3">
           <div className="flex flex-shrink-0 items-center">
             <Link to="/">
-              <img className="block h-10 w-auto lg:hidden" src={logo} alt="Nous Psyche" />
+              <img className="block h-12 w-auto lg:hidden" src={logo} alt="Nous Psyche" />
               <img className="hidden h-16 w-auto lg:block" src={logo} alt="Nous Psyche" />
             </Link>
           </div>
@@ -95,21 +94,29 @@ export default function Header() {
               Explorer
             </Link>
           </div>
-          <div className="block">
-            <ConnectButton
-              chainStatus={'none'}
-              accountStatus={{
-                smallScreen: 'avatar',
-                largeScreen: 'avatar',
-              }}
-            />
-          </div>
-          <div className="block sm:hidden h-8 w-8 text-white" onClick={openModal}>
-            <Bars3Icon />
+
+          <div className="flex justify-between gap-3 items-center">
+            <div className="hidden sm:block pr-4">
+              <div title="Follow Us On These Platforms">
+                <SocialMedias />
+              </div>
+            </div>
+            <div className="block">
+              <ConnectButton
+                chainStatus={'none'}
+                accountStatus={{
+                  smallScreen: 'avatar',
+                  largeScreen: 'avatar',
+                }}
+              />
+            </div>
+            <button type="button" className="block sm:hidden h-8 w-8 text-white" onClick={openModal}>
+              <Bars3Icon />
+            </button>
           </div>
         </div>
         <div>
-              <SmallScreenModal />
+          <SmallScreenModal />
         </div>
       </div>
     </Disclosure>
